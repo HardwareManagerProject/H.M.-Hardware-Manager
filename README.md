@@ -25,13 +25,13 @@ O sistema gerenciará:
 ###  Definições, Acrônimos e Abreviações
 
 - **Máquina**:
-Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor faucibus molestie posuere amet tempus. Congue commodo sit fames conubia pretium finibus adipiscing convallis bibendum. Mauris nullam arcu dapibus in enim erat. Scelerisque tristique quam hac ridiculus habitant nisi est. Ultrices velit eleifend malesuada ornare odio vitae congue erat. Laoreet nisi elementum curabitur proin netus tincidunt ad.
+Ao mencionar máquina nos referimos aos computadores, sejam eles do tipo Desktop ou Notebook.
 
 - **Conserto**:
-Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor faucibus molestie posuere amet tempus. Congue commodo sit fames conubia pretium finibus adipiscing convallis bibendum. Mauris nullam arcu dapibus in enim erat. Scelerisque tristique quam hac ridiculus habitant nisi est. Ultrices velit eleifend malesuada ornare odio vitae congue erat. Laoreet nisi elementum curabitur proin netus tincidunt ad.
+Conserto ou manutenção é a resolução de erros ou problemas que podem vir a ser encontrados nas máquinas.
 
 - **Inventário**:
-Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor faucibus molestie posuere amet tempus. Congue commodo sit fames conubia pretium finibus adipiscing convallis bibendum. Mauris nullam arcu dapibus in enim erat. Scelerisque tristique quam hac ridiculus habitant nisi est. Ultrices velit eleifend malesuada ornare odio vitae congue erat. Laoreet nisi elementum curabitur proin netus tincidunt ad.
+É nele que é contido as máquinas e suas respectivas informações.
 
 ### Requisitos Funcionais
 
