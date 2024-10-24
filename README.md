@@ -8,10 +8,13 @@
 
 **Reponsáveis:** @Xenoxys1 e @eduardahermannalmeida
 
+---
+
 ## Introdução
 
 ### Objetivo
 O objetivo deste documento é detalhar os requisitos funcionais e não funcionais do sistema "Gerenciador de Hardware para Laboratórios", que permitirá o controle e monitoramento de máquinas, consertos, peças trocadas e inventário de componentes em um ou mais laboratórios.
+
 ### Escopo
 
 O sistema gerenciará:
@@ -22,9 +25,6 @@ O sistema gerenciará:
 ###  Definições, Acrônimos e Abreviações
 
 - **Máquina**:
-Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor faucibus molestie posuere amet tempus. Congue commodo sit fames conubia pretium finibus adipiscing convallis bibendum. Mauris nullam arcu dapibus in enim erat. Scelerisque tristique quam hac ridiculus habitant nisi est. Ultrices velit eleifend malesuada ornare odio vitae congue erat. Laoreet nisi elementum curabitur proin netus tincidunt ad.
-
-- **Peça**:
 Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor faucibus molestie posuere amet tempus. Congue commodo sit fames conubia pretium finibus adipiscing convallis bibendum. Mauris nullam arcu dapibus in enim erat. Scelerisque tristique quam hac ridiculus habitant nisi est. Ultrices velit eleifend malesuada ornare odio vitae congue erat. Laoreet nisi elementum curabitur proin netus tincidunt ad.
 
 - **Conserto**:
@@ -48,27 +48,18 @@ Lorem ipsum odor amet, consectetuer adipiscing elit. Enim laoreet ut; dolor fauc
 - **RF-06**: O sistema deve armazenar um histórico completo de todas as manutenções realizadas em cada máquina.
 - **RF-07**: O sistema deve permitir a criação de agendamentos de manutenções preventivas para as máquinas.
 
-#### Controle de Peças e Inventário
-
-- **RF-08**: O sistema deve permitir o cadastro de peças de hardware no inventário, incluindo informações como tipo, fabricante e quantidade em estoque.
-- **RF-09**: O sistema deve registrar as peças retiradas do estoque para serem utilizadas em consertos.
-- **RF-10**: O sistema deve emitir alertas quando uma peça estiver com baixa quantidade no estoque.
-
 #### Gerenciamento de Laboratórios
 
-- **RF-11**: O sistema deve permitir gerenciar múltiplos laboratórios, associando máquinas e peças a seus respectivos locais.
-- **RF-12**: O sistema deve exibir um painel geral que mostre o status das máquinas em todos os laboratórios.
+- **RF-08**: O sistema deve permitir gerenciar múltiplos laboratórios, associando máquinas a seus respectivos locais.
+- **RF-09**: O sistema deve exibir um painel geral que mostre o status das máquinas em todos os laboratórios.
 
 #### Relatórios e Auditorias
 
-- **RF-13**: O sistema deve gerar relatórios de consertos e manutenções realizados em um período definido.
-- **RF-14**: O sistema deve gerar relatórios sobre o uso e troca de peças ao longo do tempo.
-- **RF-15**: O sistema deve permitir a exportação de relatórios em formatos como PDF ou Excel.
+- **RF-10**: O sistema deve gerar relatórios de consertos e manutenções realizados em um período definido.
 
 #### Controle de Acesso e Usuários
 
-- **RF-16**: O sistema deve permitir a criação de perfis de usuário com diferentes níveis de acesso (técnicos, administradores).
-- **RF-17**: O sistema deve manter logs de todas as ações realizadas pelos usuários.
+- **RF-11**: O sistema deve permitir a criação de perfis de usuário com diferentes níveis de acesso (técnicos, administradores).
 
 ### Requisitos Não Funcionais
 
