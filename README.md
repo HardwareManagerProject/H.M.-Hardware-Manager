@@ -48,18 +48,23 @@ Conserto ou manutenção é a resolução de erros ou problemas que podem vir a 
 - **RF-06**: O sistema deve armazenar um histórico completo de todas as manutenções realizadas em cada máquina.
 - **RF-07**: O sistema deve permitir a criação de agendamentos de manutenções preventivas para as máquinas.
 
+#### Controle de Peças
+
+- **RF-08**: O sistema deve armazenar as informações das peças em uma tabela, como Status, Especificações, Nome e entre outros.
+- **RF-09**: O sistema deve permitir o cadastro de diferentes tipos de peças para serem usadas nos equipamentos ou para receberem manutenção.
+
 #### Gerenciamento de Laboratórios
 
-- **RF-08**: O sistema deve permitir gerenciar múltiplos laboratórios, associando máquinas a seus respectivos locais.
-- **RF-09**: O sistema deve exibir um painel geral que mostre o status das máquinas em todos os laboratórios.
+- **RF-10**: O sistema deve permitir gerenciar múltiplos laboratórios, associando máquinas a seus respectivos locais.
+- **RF-11**: O sistema deve exibir um painel geral que mostre o status das máquinas em todos os laboratórios.
 
 #### Relatórios e Auditorias
 
-- **RF-10**: O sistema deve gerar relatórios de consertos e manutenções realizados em um período definido.
+- **RF-12**: O sistema deve gerar relatórios de consertos e manutenções realizados em um período definido.
 
 #### Controle de Acesso e Usuários
 
-- **RF-11**: O sistema deve permitir a criação de perfis de usuário com diferentes níveis de acesso (técnicos, administradores).
+- **RF-13**: O sistema deve permitir a criação de perfis de usuário com diferentes níveis de acesso (técnicos, administradores).
 
 ### Requisitos Não Funcionais
 
