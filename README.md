@@ -106,4 +106,4 @@ Conserto ou manutenção é a resolução de erros ou problemas que podem vir a 
 
 O sistema "Gerenciador de Hardware para Laboratórios" deve facilitar o controle e o monitoramento das máquinas e peças de hardware, proporcionando maior eficiência na gestão de manutenção e inventário dos laboratórios. Este documento deverá ser revisado periodicamente conforme novas funcionalidades e necessidades sejam identificadas.
 
-![Footer](./H.M.Footer.png)
+![Footer](./H.M._Footer.png)
