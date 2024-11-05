@@ -1,7 +1,7 @@
 package br.com.DTO;
 
 public class LabDTO {
-    private int id_lab, quant_equip;
+    private int id_lab, quant_maquinas;
     private String nome_lab;
 
     public int getId_lab() {
@@ -12,12 +12,12 @@ public class LabDTO {
         this.id_lab = id_lab;
     }
 
-    public int getQuant_equip() {
-        return quant_equip;
+    public int getQuant_maquinas() {
+        return quant_maquinas;
     }
 
-    public void setQuant_equip(int quant_equip) {
-        this.quant_equip = quant_equip;
+    public void setQuant_maquinas(int quant_maquinas) {
+        this.quant_maquinas = quant_maquinas;
     }
 
     public String getNome_lab() {
