@@ -5,6 +5,11 @@
  */
 package br.com.VIEW;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+
 /**
  *
  * @author aluno.saolucas
@@ -27,23 +32,197 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/HM_Background.gif"));
+        Image img = icon.getImage();
+        TheDesktopPane = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g)
+            {
+                g.drawImage(img, 0,0, getWidth(),
+                    getHeight(),this);
+            }
+        }
+        ;
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        barraDeMenu = new javax.swing.JMenuBar();
+        menuCadastro = new javax.swing.JMenu();
+        sUsuario = new javax.swing.JMenuItem();
+        sLaboratorio = new javax.swing.JMenuItem();
+        sEquipamento = new javax.swing.JMenuItem();
+        sPeca = new javax.swing.JMenuItem();
+        menuManutencao = new javax.swing.JMenu();
+        sRegistrarManutencao = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(new java.awt.Font("Monospaced", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tabela_de_relatorios (2).png"))); // NOI18N
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Placeholder (Ícone Banco)");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Placeholder (Data)");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Placeholder (Nome Usuário)");
+
+        TheDesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout TheDesktopPaneLayout = new javax.swing.GroupLayout(TheDesktopPane);
+        TheDesktopPane.setLayout(TheDesktopPaneLayout);
+        TheDesktopPaneLayout.setHorizontalGroup(
+            TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TheDesktopPaneLayout.createSequentialGroup()
+                .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TheDesktopPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4))
+                    .addGroup(TheDesktopPaneLayout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addContainerGap())
+        );
+        TheDesktopPaneLayout.setVerticalGroup(
+            TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TheDesktopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+
+        menuCadastro.setText("Cadastro");
+
+        sUsuario.setText("Usuário");
+        sUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sUsuarioActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(sUsuario);
+
+        sLaboratorio.setText("Laboratório");
+        sLaboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sLaboratorioActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(sLaboratorio);
+
+        sEquipamento.setText("Equipamento");
+        sEquipamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEquipamentoActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(sEquipamento);
+
+        sPeca.setText("Peça");
+        sPeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sPecaActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(sPeca);
+
+        barraDeMenu.add(menuCadastro);
+
+        menuManutencao.setText("Manutenção");
+
+        sRegistrarManutencao.setText("Registrar/Fazer Manutenção");
+        sRegistrarManutencao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sRegistrarManutencaoActionPerformed(evt);
+            }
+        });
+        menuManutencao.add(sRegistrarManutencao);
+
+        barraDeMenu.add(menuManutencao);
+
+        setJMenuBar(barraDeMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(TheDesktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(TheDesktopPane)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sUsuarioActionPerformed
+        InternalFrameUsuario tusuario = new InternalFrameUsuario();
+        TheDesktopPane.add(tusuario);
+        tusuario.setVisible(true);
+    }//GEN-LAST:event_sUsuarioActionPerformed
+
+    private void sLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sLaboratorioActionPerformed
+        InternalFrameLaboratorio tlaboratorio = new InternalFrameLaboratorio();
+        TheDesktopPane.add(tlaboratorio);
+        tlaboratorio.setVisible(true);
+    }//GEN-LAST:event_sLaboratorioActionPerformed
+
+    private void sEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEquipamentoActionPerformed
+        InternalFrameMaquina tmaquina = new InternalFrameMaquina();
+        TheDesktopPane.add(tmaquina);
+        tmaquina.setVisible(true);
+    }//GEN-LAST:event_sEquipamentoActionPerformed
+
+    private void sPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPecaActionPerformed
+        InternalFramePeca tpeca = new InternalFramePeca();
+        TheDesktopPane.add(tpeca);
+        tpeca.setVisible(true);
+    }//GEN-LAST:event_sPecaActionPerformed
+
+    private void sRegistrarManutencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sRegistrarManutencaoActionPerformed
+        InternalFrameManutencao tmanutencao = new InternalFrameManutencao();
+        TheDesktopPane.add(tmanutencao);
+        tmanutencao.setVisible(true);
+    }//GEN-LAST:event_sRegistrarManutencaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +260,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JDesktopPane TheDesktopPane;
+    private javax.swing.JMenuBar barraDeMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JMenu menuCadastro;
+    private javax.swing.JMenu menuManutencao;
+    private javax.swing.JMenuItem sEquipamento;
+    private javax.swing.JMenuItem sLaboratorio;
+    private javax.swing.JMenuItem sPeca;
+    private javax.swing.JMenuItem sRegistrarManutencao;
+    private javax.swing.JMenuItem sUsuario;
     // End of variables declaration//GEN-END:variables
 }
