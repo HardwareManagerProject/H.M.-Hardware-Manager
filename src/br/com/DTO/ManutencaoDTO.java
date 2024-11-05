@@ -1,8 +1,8 @@
 package br.com.DTO;
 
 public class ManutencaoDTO {
-    private int id_manutencao, id_peca, id_equip;
-    private String desc_manutencao, status_manutencao, data_entrada, data_saida;
+    private int id_manutencao, id_peca, id_maquina;
+    private String desc_manutencao, status_manutencao, data_entrada, data_saida, responsavel, solucao;
 
     public int getId_manutencao() {
         return id_manutencao;
@@ -20,12 +20,12 @@ public class ManutencaoDTO {
         this.id_peca = id_peca;
     }
 
-    public int getId_equip() {
-        return id_equip;
+    public int getId_maquina() {
+        return id_maquina;
     }
 
-    public void setId_equip(int id_equip) {
-        this.id_equip = id_equip;
+    public void setId_maquina(int id_maquina) {
+        this.id_maquina = id_maquina;
     }
 
     public String getDesc_manutencao() {
@@ -59,6 +59,21 @@ public class ManutencaoDTO {
     public void setData_saida(String data_saida) {
         this.data_saida = data_saida;
     }
-    
-    
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public String getSolucao() {
+        return solucao;
+    }
+
+    public void setSolucao(String solucao) {
+        this.solucao = solucao;
+    }
+
 }
