@@ -177,7 +177,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/tabela_de_relatorios (2).png"/>
+              <Image iconType="3" name="/img/tabela_relatorios_title.png"/>
             </Property>
           </Properties>
         </Component>
