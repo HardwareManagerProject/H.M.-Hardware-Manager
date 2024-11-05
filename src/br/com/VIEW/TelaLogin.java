@@ -45,7 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setText("Login");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("SimSun", 0, 35)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SimSun", 1, 35)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
@@ -58,7 +58,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 500, -1));
 
-        jLabel3.setFont(new java.awt.Font("SimSun", 0, 35)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SimSun", 1, 35)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
