@@ -136,8 +136,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadastro_icon.png"))); // NOI18N
         menuCadastro.setText("Cadastro");
 
+        sUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario_icon.png"))); // NOI18N
         sUsuario.setText("Usuário");
         sUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +148,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastro.add(sUsuario);
 
+        sLaboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/laboratorio_icon.png"))); // NOI18N
         sLaboratorio.setText("Laboratório");
         sLaboratorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +157,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastro.add(sLaboratorio);
 
-        sEquipamento.setText("Equipamento");
+        sEquipamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/equipamento_icon.png"))); // NOI18N
+        sEquipamento.setText("Máquina");
         sEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sEquipamentoActionPerformed(evt);
@@ -162,6 +166,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastro.add(sEquipamento);
 
+        sPeca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/peca _icon.png"))); // NOI18N
         sPeca.setText("Peça");
         sPeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,8 +177,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         barraDeMenu.add(menuCadastro);
 
+        menuManutencao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/manutencao.png"))); // NOI18N
         menuManutencao.setText("Manutenção");
 
+        sRegistrarManutencao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fazer_manutencao_icon.png"))); // NOI18N
         sRegistrarManutencao.setText("Registrar/Fazer Manutenção");
         sRegistrarManutencao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,7 +286,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblData;
+    public static javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuarioPrincipal;
     public static javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuManutencao;

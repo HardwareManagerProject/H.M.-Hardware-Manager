@@ -11,7 +11,7 @@ public class ConexaoDAO {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://127.0.0.1:3306/hmdatabase";
         String user = "root";
-        String password = "arthur12";
+        String password = "root";
         
 
         try {

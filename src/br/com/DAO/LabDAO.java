@@ -1,7 +1,6 @@
 package br.com.DAO;
 
 import br.com.DTO.LabDTO;
-import br.com.VIEW.InternalFrameLaboratorio;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -66,7 +65,7 @@ public class LabDAO {
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) InternalFrameLaboratorio.tblLaboratorio.getModel();
+            DefaultTableModel model = (DefaultTableModel) InternalFrameLaboratorio.tblAgenda.getModel();
             model.setNumRows(0);
             
             while (rs.next()){

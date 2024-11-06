@@ -9,10 +9,6 @@ import br.com.DAO.ConexaoDAO;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author aluno.saolucas
- */
 public class TelaLogin extends javax.swing.JFrame {
 
     Connection conexao = null;
@@ -41,9 +37,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
             if (rs.next()) {
                 String perfil = rs.getString(4);
-//                System.out.println(perfil);
 
-                //tratamento de perfil
                 if (perfil.equals("admin")) {
                     TelaPrincipal principal = new TelaPrincipal();
                     principal.setVisible(true);
@@ -102,7 +96,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 500, 50));
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 372, 500, 50));
 
         txtNome.setFont(new java.awt.Font("SimSun", 0, 35)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +115,7 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
         btnLogin.setBackground(new java.awt.Color(153, 153, 153));
-        btnLogin.setFont(new java.awt.Font("SimSun", 0, 48)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("SimSun", 1, 48)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(51, 51, 51));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -129,11 +123,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 240, 80));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 240, 80));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background_Placeholder.png"))); // NOI18N
         Background.setText("bACKGROUND");
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1000, 600));
 
         pack();
         setLocationRelativeTo(null);
@@ -189,7 +183,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    public static javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
