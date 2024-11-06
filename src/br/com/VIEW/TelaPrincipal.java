@@ -7,6 +7,8 @@ package br.com.VIEW;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.text.DateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 
 
@@ -47,8 +49,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
+        lblUsuarioPrincipal = new javax.swing.JLabel();
         barraDeMenu = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         sUsuario = new javax.swing.JMenuItem();
@@ -60,6 +62,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,17 +88,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Placeholder (Ícone Banco)");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Placeholder (Data)");
+        lblData.setForeground(new java.awt.Color(255, 255, 255));
+        lblData.setText("Placeholder (Data)");
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Placeholder (Nome Usuário)");
+        lblUsuarioPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioPrincipal.setText("Placeholder (Nome Usuário)");
 
         TheDesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         TheDesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         TheDesktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        TheDesktopPane.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        TheDesktopPane.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(lblData, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(lblUsuarioPrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout TheDesktopPaneLayout = new javax.swing.GroupLayout(TheDesktopPane);
         TheDesktopPane.setLayout(TheDesktopPaneLayout);
@@ -101,9 +108,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TheDesktopPaneLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3)
+                        .addComponent(lblData)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(lblUsuarioPrincipal))
                     .addGroup(TheDesktopPaneLayout.createSequentialGroup()
                         .addGap(293, 293, 293)
                         .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -118,8 +125,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TheDesktopPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(lblData)
+                    .addComponent(lblUsuarioPrincipal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -224,6 +231,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tmanutencao.setVisible(true);
     }//GEN-LAST:event_sRegistrarManutencaoActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Date data = new Date();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        lblData.setText(formatador.format(data));
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -264,16 +277,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraDeMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu menuCadastro;
+    private javax.swing.JLabel lblData;
+    public static javax.swing.JLabel lblUsuarioPrincipal;
+    public static javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuManutencao;
     private javax.swing.JMenuItem sEquipamento;
     private javax.swing.JMenuItem sLaboratorio;
     private javax.swing.JMenuItem sPeca;
     private javax.swing.JMenuItem sRegistrarManutencao;
-    private javax.swing.JMenuItem sUsuario;
+    public static javax.swing.JMenuItem sUsuario;
     // End of variables declaration//GEN-END:variables
 }
