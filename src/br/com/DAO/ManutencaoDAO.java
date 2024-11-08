@@ -85,14 +85,7 @@ public class ManutencaoDAO {
     }
 
     public void limpar() {
-        InternalFrameManutencao.txtID.setText(null);
-        InternalFrameManutencao.txtDescricao.setText(null);
-        InternalFrameManutencao.txtStatus.setText(null);
-        InternalFrameManutencao.txtDataEntrada.setText(null);
-        InternalFrameManutencao.txtDataSaida.setText(null);
-        InternalFrameManutencao.txtIDMaquina.setText(null);
-        InternalFrameManutencao.txtResponsavel.setText(null);
-        InternalFrameManutencao.txtSolucao.setText(null);
+        
     }
 
 }

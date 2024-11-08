@@ -1,6 +1,7 @@
 package br.com.DAO;
 
 import br.com.DTO.MaquinaDTO;
+import br.com.VIEW.InternalFrameMaquina;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,13 +89,12 @@ public class MaquinaDAO {
     }
         
             public void limpar() {
-        InternalFrameMaquina.txtID.setText(null);
+        InternalFrameMaquina.txtIDMaq.setText(null);
         InternalFrameMaquina.txtNomeMaquina.setText(null);
-        InternalFrameMaquina.txtTipoMaquina.setText(null);
-        InternalFrameMaquina.txtDescricaoMaquina.setText(null);
-        InternalFrameMaquina.txtStatusMaquina.setText(null);
-        InternalFrameMaquina.txtIDLaboratorio.setText(null);
-        InternalFrameMaquina.txtMemoriaRam.setText(null);
+        InternalFrameMaquina.txtTipo.setText(null);
+        InternalFrameMaquina.txtDesc.setText(null);
+        InternalFrameMaquina.txtIDMaq.setText(null);
+        InternalFrameMaquina.txtMemRam.setText(null);
         InternalFrameMaquina.txtProcessador.setText(null);
     }
 }

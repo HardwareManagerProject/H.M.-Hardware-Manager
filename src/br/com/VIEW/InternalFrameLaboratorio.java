@@ -5,6 +5,10 @@
  */
 package br.com.VIEW;
 
+import br.com.DAO.LabDAO;
+import br.com.DTO.LabDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno.saolucas
@@ -16,6 +20,16 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
      */
     public InternalFrameLaboratorio() {
         initComponents();
+
+        LabDAO lDAO = new LabDAO();
+        lDAO.pesquisaAuto();
+    }
+
+    public void setFields() {
+        int setar = tblLaboratorio.getSelectedRow();
+        txtID.setText(tblLaboratorio.getModel().getValueAt(setar, 0).toString());
+        txtNomeLab.setText(tblLaboratorio.getModel().getValueAt(setar, 1).toString());
+        txtQuantMaquinas.setText(tblLaboratorio.getModel().getValueAt(setar, 2).toString());
     }
 
     /**
@@ -27,29 +41,40 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtQuantMaquinas = new javax.swing.JTextField();
         txtNomeLab = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLaboratorio = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
+        txtID = new javax.swing.JLabel();
+        btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/deletar_icone.png"))); // NOI18N
+        btnDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/deletar_icone.png"))); // NOI18N
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("ID:");
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpar_icone.png"))); // NOI18N
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpar_icone.png"))); // NOI18N
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nome:");
@@ -63,29 +88,60 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
         txtQuantMaquinas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtNomeLab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNomeLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeLabActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLaboratorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nome", "Quantidade de Máquinas"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblLaboratorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLaboratorioMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblLaboratorio);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar_icone.png"))); // NOI18N
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_icone.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_icone.png"))); // NOI18N
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel7.setText("PlaceholderID");
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txtID.setText("...");
+
+        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadastrar_icone.png"))); // NOI18N
+        btnCadastrar.setToolTipText("");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,11 +151,6 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -108,26 +159,32 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(4, 4, 4)
-                                .addComponent(jLabel7))
+                                .addComponent(txtID))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtQuantMaquinas, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4)
+                                .addComponent(btnLimpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5))
+                                .addComponent(btnDeletar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jButton3)))
+                                .addComponent(btnCadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEditar)))
                         .addGap(82, 82, 82)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +192,7 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                    .addComponent(txtID))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -149,12 +206,14 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel5)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton5)
-                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnEditar)
+                                .addComponent(btnCadastrar))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnDeletar)
+                                .addComponent(btnLimpar)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
@@ -166,21 +225,102 @@ public class InternalFrameLaboratorio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNomeLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeLabActionPerformed
+
+    }//GEN-LAST:event_txtNomeLabActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        if (txtNomeLab.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ERRO: Preencha o campo Nome");
+        } else if (txtQuantMaquinas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ERRO: Preencha o campo Quantidade de Máquinas");
+        } else {
+            // Captura
+            String nome_lab = txtNomeLab.getText();
+            int quant_maq = Integer.parseInt(txtQuantMaquinas.getText());
+
+            // Transferência
+            LabDTO objLabDTO = new LabDTO();
+            objLabDTO.setNome_lab(nome_lab);
+            objLabDTO.setQuant_maquinas(quant_maq);
+
+            // Instância
+            LabDAO objLabDAO = new LabDAO();
+            objLabDAO.registrarLaboratorio(objLabDTO);
+            objLabDAO.limpar();
+            objLabDAO.pesquisaAuto();
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        if (txtNomeLab.getText().isEmpty() && txtQuantMaquinas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ERRO: Opa! Não há nada a ser limpado.");
+        } else {
+            // Instância
+            LabDAO objLabDAO = new LabDAO();
+            objLabDAO.limpar();
+        }
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if (txtID.getText().equals("...")) {
+            JOptionPane.showMessageDialog(null, "ERRO: Opa! Selecione um Laboratório da Tabela de Pesquisa para poder editá-lo!");
+        } else {
+            // Captura
+            String id_lab = txtID.getText();
+            String nome_lab = txtNomeLab.getText();
+            int quant_maq = Integer.parseInt(txtQuantMaquinas.getText());
+
+            // Transferência
+            LabDTO objLabDTO = new LabDTO();
+            objLabDTO.setId_lab(Integer.parseInt(id_lab));
+            objLabDTO.setNome_lab(nome_lab);
+            objLabDTO.setQuant_maquinas(quant_maq);
+
+            // Instância
+            LabDAO objLabDAO = new LabDAO();
+            objLabDAO.editar(objLabDTO);
+            objLabDAO.pesquisaAuto();
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        if (txtID.getText().equals("...")) {
+            JOptionPane.showMessageDialog(null, "ERRO: Opa! Selecione um Laboratório da Tabela de Pesquisa para poder deletá-lo.");
+        } else if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar este laboratório?",
+                "Deletar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            String id_usuario = txtID.getText();
+
+            LabDTO objLabDTO = new LabDTO();
+            objLabDTO.setId_lab(Integer.parseInt(id_usuario));
+
+            LabDAO objLabDAO = new LabDAO();
+            objLabDAO.apagar(objLabDTO);
+            objLabDAO.pesquisaAuto();
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void tblLaboratorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLaboratorioMouseClicked
+        setFields();
+    }//GEN-LAST:event_tblLaboratorioMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txtNomeLab;
-    private javax.swing.JTextField txtQuantMaquinas;
+    public static javax.swing.JTable tblLaboratorio;
+    private javax.swing.JLabel txtID;
+    public static javax.swing.JTextField txtNomeLab;
+    public static javax.swing.JTextField txtQuantMaquinas;
     // End of variables declaration//GEN-END:variables
 }

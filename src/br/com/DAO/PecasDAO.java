@@ -1,6 +1,7 @@
 package br.com.DAO;
 
 import br.com.DTO.PecasDTO;
+import br.com.VIEW.InternalFramePeca;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -65,7 +66,7 @@ public class PecasDAO {
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) InternalFramePeca.tblAgenda.getModel();
+            DefaultTableModel model = (DefaultTableModel) InternalFramePeca.tblPeca.getModel();
             model.setNumRows(0);
             
             while (rs.next()){

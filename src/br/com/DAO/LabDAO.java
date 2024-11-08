@@ -1,16 +1,17 @@
 package br.com.DAO;
 
 import br.com.DTO.LabDTO;
+import br.com.VIEW.InternalFrameLaboratorio;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class LabDAO {
-    
+
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     public void registrarLaboratorio(LabDTO objLabDTO) {
         String sql = "insert into Laboratorio(nome_laboratorio, quantidade_maquinas) values(?, ?)";
         conexao = new ConexaoDAO().conector();
@@ -19,7 +20,6 @@ public class LabDAO {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, objLabDTO.getNome_lab());
             pst.setInt(2, objLabDTO.getQuant_maquinas());
-            
 
             int res = pst.executeUpdate();
             if (res == 1) {
@@ -40,7 +40,7 @@ public class LabDAO {
         }
 
     }
-    
+
     public void apagar(LabDTO objLabDTO) {
         String sql = "delete from Laboratorio where id_laboratorio = ?";
         conexao = ConexaoDAO.conector();
@@ -57,30 +57,30 @@ public class LabDAO {
             JOptionPane.showMessageDialog(null, "Método Apagar: " + e);
         }
     }
-    
-    public void pesquisaAuto(){
+
+    public void pesquisaAuto() {
         String sql = "select * from Laboratorio";
         conexao = ConexaoDAO.conector();
-        
+
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) InternalFrameLaboratorio.tblAgenda.getModel();
+            DefaultTableModel model = (DefaultTableModel) InternalFrameLaboratorio.tblLaboratorio.getModel();
             model.setNumRows(0);
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 int id = rs.getInt("id_laboratorio");
                 String nome = rs.getString("nome_laboratorio");
                 String qtd = rs.getString("quantidade_maquinas");
                 model.addRow(new Object[]{id, nome, qtd});
             }
             conexao.close();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Método Pesquisa Automática: "+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Método Pesquisa Automática: " + e);
         }
-        
+
     }
-    
+
     public void editar(LabDTO objLabDTO) {
         String sql = "update Laboratorio set nome_laboratorio = ?, quantidade_maquinas = ? where id_laboratorio = ?";
         conexao = ConexaoDAO.conector();
@@ -90,6 +90,8 @@ public class LabDAO {
             pst.setInt(3, objLabDTO.getId_lab());
             pst.setString(1, objLabDTO.getNome_lab());
             pst.setInt(2, objLabDTO.getQuant_maquinas());
+            
+            System.out.println(pst);
 
             int add = pst.executeUpdate();
             if (add > 0) {
@@ -102,5 +104,10 @@ public class LabDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Método Editar: " + e);
         }
+    }
+
+    public void limpar() {
+        InternalFrameLaboratorio.txtNomeLab.setText(null);
+        InternalFrameLaboratorio.txtQuantMaquinas.setText(null);
     }
 }
