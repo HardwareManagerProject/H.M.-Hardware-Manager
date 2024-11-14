@@ -22,6 +22,12 @@ O sistema gerenciará:
 - Cadastro e controle de máquinas de diversos laboratórios.
 - Registro de manutenções, consertos e peças trocadas.
 
+### Diagramas
+
+![HMDiagramaLógico](https://github.com/user-attachments/assets/de8eea2b-924d-4167-95b6-22a895777bf0)
+
+![DiagramaHMConceitual](https://github.com/user-attachments/assets/f29c4fc3-2713-44a2-ad69-4a74aca8ca2c)
+
 ###  Definições, Acrônimos e Abreviações
 
 - **Máquina**:
