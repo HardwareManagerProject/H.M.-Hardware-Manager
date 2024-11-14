@@ -1,4 +1,3 @@
-
 package br.com.VIEW;
 
 import br.com.DAO.ConexaoDAO;
@@ -6,7 +5,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -16,13 +15,13 @@ public class TelaLogin extends javax.swing.JFrame {
         conexao = ConexaoDAO.conector();
 
         if (conexao != null) {
-            System.out.println("Conectado com sucesso. "+conexao);
+            System.out.println("Conectado com sucesso. " + conexao);
         } else {
-            System.out.println("Falha na conexão. "+conexao);
+            System.out.println("Falha na conexão. " + conexao);
         }
 
     }
-    
+
     public void logar() {
         String sql = "select * from usuario where nome_usuario = ? and senha_usuario = ?";
         try {
@@ -35,20 +34,43 @@ public class TelaLogin extends javax.swing.JFrame {
             if (rs.next()) {
                 String perfil = rs.getString(4);
 
-                if (perfil.equals("admin")) {
-                    TelaPrincipal principal = new TelaPrincipal();
-                    principal.setVisible(true);
-                    TelaPrincipal.menuCadastro.setEnabled(true);
-                    TelaPrincipal.sUsuario.setEnabled(true);
-                    TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
-                    conexao.close();
-                } else {
-                    TelaPrincipal principal = new TelaPrincipal();
-                    principal.setVisible(true);
-                    TelaPrincipal.menuCadastro.setEnabled(false);
-                    TelaPrincipal.sUsuario.setEnabled(false);
-                    TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
-                    conexao.close();
+                switch (perfil) {
+                    case "admin": {
+                        TelaPrincipal principal = new TelaPrincipal();
+                        principal.setVisible(true);
+                        TelaPrincipal.menuCadastro.setEnabled(true);
+                        TelaPrincipal.sUsuario.setEnabled(true);
+                        TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
+                        conexao.close();
+                        break;
+                    }
+                    case "professor": {
+                        TelaPrincipal principal = new TelaPrincipal();
+                        principal.setVisible(true);
+                        TelaPrincipal.menuCadastro.setEnabled(true);
+                        TelaPrincipal.sUsuario.setEnabled(true);
+                        TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
+                        conexao.close();
+                        break;
+                    }
+                    case "tecnico": {
+                        TelaPrincipal principal = new TelaPrincipal();
+                        principal.setVisible(true);
+                        TelaPrincipal.menuCadastro.setEnabled(true);
+                        TelaPrincipal.sUsuario.setEnabled(false);
+                        TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
+                        conexao.close();
+                        break;
+                    }
+                    default: {
+                        TelaPrincipal principal = new TelaPrincipal();
+                        principal.setVisible(true);
+                        TelaPrincipal.menuCadastro.setEnabled(false);
+                        TelaPrincipal.sUsuario.setEnabled(false);
+                        TelaPrincipal.lblUsuarioPrincipal.setText(rs.getString(2));
+                        conexao.close();
+                        break;
+                    }
                 }
                 dispose();
             } else {
@@ -61,8 +83,6 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Método Login: " + e);
         }
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,47 +101,48 @@ public class TelaLogin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 100)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 100)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Login");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Login_title.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("SimSun", 1, 35)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
         txtSenha.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 500, 50));
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 500, 50));
 
-        txtNome.setFont(new java.awt.Font("SimSun", 0, 35)); // NOI18N
+        txtNome.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 500, -1));
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 500, -1));
 
-        jLabel3.setFont(new java.awt.Font("SimSun", 1, 35)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HM_Icon_161x161.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
-        btnLogin.setBackground(new java.awt.Color(153, 153, 153));
-        btnLogin.setFont(new java.awt.Font("SimSun", 1, 48)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(51, 51, 51));
-        btnLogin.setText("Login");
+        btnLogin.setBackground(new java.awt.Color(153, 204, 255));
+        btnLogin.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login_btn.png"))); // NOI18N
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 240, 80));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 330, 140));
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background_Placeholder.png"))); // NOI18N
+        Background.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg_login.png"))); // NOI18N
         Background.setText("bACKGROUND");
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1000, 600));
 

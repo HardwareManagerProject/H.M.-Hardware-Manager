@@ -2,10 +2,13 @@ package br.com.DAO;
 
 import br.com.DTO.UsuarioDTO;
 import br.com.VIEW.InternalFrameUsuario;
+import static br.com.VIEW.InternalFrameUsuario.tblUsuarios;
+import static br.com.VIEW.InternalFrameUsuario.txtPesquisa;
 import br.com.VIEW.TelaPrincipal;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 public class UsuarioDAO {
     
@@ -14,7 +17,7 @@ public class UsuarioDAO {
     ResultSet rs = null;
     
     public void inserirUsuario(UsuarioDTO objUsuarioDTO) {
-        String sql = "insert into Usuario(nome_usuario, senha_usuario, tipo_usuario) values(?, ?, ?)";
+        String sql = "insert into Usuario(nome_usuario, senha_usuario, tipo_usuario, email) values(?, ?, ?, ?)";
         conexao = new ConexaoDAO().conector();
 
         try {
@@ -22,6 +25,7 @@ public class UsuarioDAO {
             pst.setString(1, objUsuarioDTO.getNome_user());
             pst.setString(2, objUsuarioDTO.getSenha_user());
             pst.setString(3, objUsuarioDTO.getTipo_user());
+            pst.setString(4, objUsuarioDTO.getEmail());
             
 
             int res = pst.executeUpdate();
@@ -75,8 +79,9 @@ public class UsuarioDAO {
                 int id = rs.getInt("id_usuario");
                 String nome = rs.getString("nome_usuario");
                 String senha = rs.getString("senha_usuario");
+                String email = rs.getString("email");
                 String tipo = rs.getString("tipo_usuario");
-                model.addRow(new Object[]{id, nome, senha, tipo});
+                model.addRow(new Object[]{id, nome, senha, email, tipo});
             }
             conexao.close();
         } catch (Exception e){
@@ -85,16 +90,32 @@ public class UsuarioDAO {
         
     }
     
+    public void pesquisa(){
+        String sql = "select * from Usuario where nome_usuario like ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtPesquisa.getText() + "%");
+            rs = pst.executeQuery();
+            
+            tblUsuarios.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Método Pesquisa: "+e);
+        }
+    }
+    
     public void editar(UsuarioDTO objUsuarioDTO) {
-        String sql = "update Usuarios set nome_usuario = ?, senha_usuario = ?, tipo_usuario = ? where id_usuario = ?";
+        String sql = "update Usuario set nome_usuario = ?, senha_usuario = ?, tipo_usuario = ?, email = ? where id_usuario = ?";
         conexao = ConexaoDAO.conector();
 
         try {
             pst = conexao.prepareStatement(sql);
-            pst.setInt(4, objUsuarioDTO.getId_user());
+            pst.setInt(5, objUsuarioDTO.getId_user());
             pst.setString(1, objUsuarioDTO.getNome_user());
             pst.setString(2, objUsuarioDTO.getSenha_user());
             pst.setString(3, objUsuarioDTO.getTipo_user());
+            pst.setString(4, objUsuarioDTO.getEmail());
 
             int add = pst.executeUpdate();
             if (add > 0) {
@@ -132,4 +153,10 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "Método Login: " + e);
         }
     }
+     public void limpar(){
+         InternalFrameUsuario.txtID.setText("...");
+         InternalFrameUsuario.txtNomeUsu.setText(null);
+         InternalFrameUsuario.txtSenha.setText(null);
+         InternalFrameUsuario.txtEmail.setText(null);
+     }
 }

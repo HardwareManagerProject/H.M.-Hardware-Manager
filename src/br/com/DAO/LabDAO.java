@@ -2,9 +2,12 @@ package br.com.DAO;
 
 import br.com.DTO.LabDTO;
 import br.com.VIEW.InternalFrameLaboratorio;
+import static br.com.VIEW.InternalFrameLaboratorio.tblLaboratorio;
+import static br.com.VIEW.InternalFrameLaboratorio.txtPesquisa;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 public class LabDAO {
 
@@ -79,6 +82,21 @@ public class LabDAO {
             JOptionPane.showMessageDialog(null, "Método Pesquisa Automática: " + e);
         }
 
+    }
+    
+    public void pesquisa(){
+        String sql = "select * from Laboratorio where nome_laboratorio like ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtPesquisa.getText() + "%");
+            rs = pst.executeQuery();
+            
+            tblLaboratorio.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Método Pesquisa: "+e);
+        }
     }
 
     public void editar(LabDTO objLabDTO) {

@@ -1,8 +1,16 @@
 package br.com.DTO;
 
 public class MaquinaDTO {
-    private int id_maquina, id_lab;
+    private int id_maquina, id_lab, num_serie;
     private String nome_maquina, tipo_maquina, desc_maquina, status_maquina, mem_ram, processador;
+    
+    public int getNum_serie() {
+        return num_serie;
+    }
+
+    public void setNum_serie(int num_serie) {
+        this.num_serie = num_serie;
+    }
 
     public int getId_maquina() {
         return id_maquina;

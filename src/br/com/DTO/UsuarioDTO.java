@@ -2,7 +2,15 @@ package br.com.DTO;
 
 public class UsuarioDTO {
     private int id_user;
-    private String nome_user, senha_user, tipo_user;
+    private String nome_user, senha_user, tipo_user, email;
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getId_user() {
         return id_user;

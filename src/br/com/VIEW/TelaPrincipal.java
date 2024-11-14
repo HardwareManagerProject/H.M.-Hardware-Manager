@@ -5,8 +5,11 @@
  */
 package br.com.VIEW;
 
+import br.com.DAO.ConexaoDAO;
+import br.com.DAO.ManutencaoDAO;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.*;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -18,11 +21,24 @@ import javax.swing.ImageIcon;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    Connection conexao = null;
+    
     public TelaPrincipal() {
         initComponents();
+        
+        ManutencaoDAO manDAO = new ManutencaoDAO();
+        manDAO.pesquisaAutoRelatorio();
+        
+        conexao = ConexaoDAO.conector();
+
+        if (conexao != null) {
+            ImageIcon iconeSuccess = new ImageIcon("src/img/conexao_success.png");
+            lblConexaoSql.setIcon(iconeSuccess);
+        } else {
+            ImageIcon iconeFail = new ImageIcon("src/img/conexao_fail.png");
+            lblConexaoSql.setIcon(iconeFail);
+        }
+
     }
 
     /**
@@ -46,9 +62,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         ;
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblRelatorio = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblConexaoSql = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         lblUsuarioPrincipal = new javax.swing.JLabel();
         barraDeMenu = new javax.swing.JMenuBar();
@@ -68,25 +84,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Manutenção", "Descrição", "Responsável", "Status", "Data Entrada", "Data Saída", "ID Máquina", "ID Peça", "Solução"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblRelatorio);
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tabela_relatorios_title.png"))); // NOI18N
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Placeholder (Ícone Banco)");
+        lblConexaoSql.setForeground(new java.awt.Color(255, 255, 255));
+        lblConexaoSql.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conexao_fail.png"))); // NOI18N
 
         lblData.setForeground(new java.awt.Color(255, 255, 255));
         lblData.setText("Placeholder (Data)");
@@ -96,7 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         TheDesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         TheDesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        TheDesktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        TheDesktopPane.setLayer(lblConexaoSql, javax.swing.JLayeredPane.DEFAULT_LAYER);
         TheDesktopPane.setLayer(lblData, javax.swing.JLayeredPane.DEFAULT_LAYER);
         TheDesktopPane.setLayer(lblUsuarioPrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -104,20 +120,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TheDesktopPane.setLayout(TheDesktopPaneLayout);
         TheDesktopPaneLayout.setHorizontalGroup(
             TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TheDesktopPaneLayout.createSequentialGroup()
-                .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TheDesktopPaneLayout.createSequentialGroup()
+                .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(TheDesktopPaneLayout.createSequentialGroup()
+                        .addGap(0, 171, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
+                        .addComponent(lblConexaoSql))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TheDesktopPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblData)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblUsuarioPrincipal))
-                    .addGroup(TheDesktopPaneLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TheDesktopPaneLayout.createSequentialGroup()
                         .addGap(293, 293, 293)
-                        .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         TheDesktopPaneLayout.setVerticalGroup(
@@ -127,13 +145,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblData)
                     .addComponent(lblUsuarioPrincipal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(TheDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TheDesktopPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TheDesktopPaneLayout.createSequentialGroup()
+                        .addComponent(lblConexaoSql, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadastro_icon.png"))); // NOI18N
@@ -240,7 +261,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Date data = new Date();
-        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.MEDIUM);
         lblData.setText(formatador.format(data));
     }//GEN-LAST:event_formWindowActivated
 
@@ -283,9 +304,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane TheDesktopPane;
     private javax.swing.JMenuBar barraDeMenu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblConexaoSql;
     public static javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuarioPrincipal;
     public static javax.swing.JMenu menuCadastro;
@@ -295,5 +315,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sPeca;
     private javax.swing.JMenuItem sRegistrarManutencao;
     public static javax.swing.JMenuItem sUsuario;
+    public static javax.swing.JTable tblRelatorio;
     // End of variables declaration//GEN-END:variables
 }

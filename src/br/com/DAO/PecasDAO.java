@@ -1,10 +1,14 @@
 package br.com.DAO;
 
 import br.com.DTO.PecasDTO;
+import br.com.VIEW.InternalFrameManutencao;
 import br.com.VIEW.InternalFramePeca;
+import static br.com.VIEW.InternalFramePeca.txtPesquisa;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+import static br.com.VIEW.InternalFramePeca.bg;
 
 public class PecasDAO {
     
@@ -60,13 +64,13 @@ public class PecasDAO {
     }
     
     public void pesquisaAuto(){
-        String sql = "select * from Usuario";
+        String sql = "select * from Peca";
         conexao = ConexaoDAO.conector();
         
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) InternalFramePeca.tblPeca.getModel();
+            DefaultTableModel model = (DefaultTableModel) InternalFramePeca.bg.getModel();
             model.setNumRows(0);
             
             while (rs.next()){
@@ -74,7 +78,48 @@ public class PecasDAO {
                 String nome = rs.getString("nome_peca");
                 String status = rs.getString("status_peca");
                 String desc = rs.getString("descricao_peca");
-                model.addRow(new Object[]{id, nome, status, desc});
+                int quant = rs.getInt("quantidade_peca");
+                model.addRow(new Object[]{id, nome, status, desc, quant});
+            }
+            conexao.close();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Método Pesquisa Automática: "+e);
+        }
+        
+    }
+    
+    public void pesquisa(){
+        String sql = "select * from Peca where nome_peca like ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtPesquisa.getText() + "%");
+            rs = pst.executeQuery();
+            
+            bg.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Método Pesquisa: "+e);
+        }
+    }
+    
+    public void pesquisaAutoManutencao(){
+        String sql = "select * from Peca";
+        conexao = ConexaoDAO.conector();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) InternalFrameManutencao.tblPeca.getModel();
+            model.setNumRows(0);
+            
+            while (rs.next()){
+                int id = rs.getInt("id_peca");
+                String nome = rs.getString("nome_peca");
+                String status = rs.getString("status_peca");
+                String desc = rs.getString("descricao_peca");
+                int quant = rs.getInt("quantidade_peca");
+                model.addRow(new Object[]{id, nome, status, desc, quant});
             }
             conexao.close();
         } catch (Exception e){
@@ -84,7 +129,7 @@ public class PecasDAO {
     }
     
     public void editar(PecasDTO objPecasDTO) {
-        String sql = "update Peca set nome_peca = ?, status_peca = ?, descricao_peca = ? where id_peca = ?";
+        String sql = "update Peca set nome_peca = ?, status_peca = ?, descricao_peca = ?, quantidade_peca = ? where id_peca = ?";
         conexao = ConexaoDAO.conector();
 
         try {
@@ -93,6 +138,7 @@ public class PecasDAO {
             pst.setString(2, objPecasDTO.getStatus_peca());
             pst.setString(3, objPecasDTO.getDesc_peca());
             pst.setInt(4, objPecasDTO.getQuant_peca());
+            pst.setInt(5, objPecasDTO.getId_peca());
 
             int add = pst.executeUpdate();
             if (add > 0) {
@@ -105,5 +151,11 @@ public class PecasDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Método Editar: " + e);
         }
+    }
+    public void limpar(){
+        InternalFramePeca.txtIDPeca.setText("...");
+        InternalFramePeca.txtNomePeca.setText(null);
+        InternalFramePeca.txtQuant.setText(null);
+        InternalFramePeca.txtDesc.setText(null);
     }
 }
